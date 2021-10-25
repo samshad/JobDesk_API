@@ -1,0 +1,27 @@
+# gunicorn.service
+# For running Gunicorn based application with a config file - TutLinks.com
+#
+# In Service Configuration section,
+# make sure the WorkingDirectory, ExecStart and ExecReload commands are correct
+# for your installation. Also do not forget to change the User and Group accordingly.
+#
+#
+# Author: Navule Pavan Kumar Rao 
+# This file is referenced from official repo of TutLinks.com
+# https://github.com/windson/fastapi/blob/fastapi-postgresql-caddy-ubuntu-deploy/gunicorn.service
+# Subscribe to TutLinks channel on YouTube: http://bit.ly/2Uc0YNk
+# vasd.service
+
+[Unit]
+Description=root@jdp-datafarm-tagsvc
+After=network.target
+
+[Service]
+User=root
+Group=root
+WorkingDirectory=/home/JobDesk_API/
+Environment="PATH=/home/JobDesk_API/env/bin/"
+ExecStart=/home/JobDesk_API/env/bin/gunicorn --bind unix:myproject.sock --config /home/JobDesk_API/gunicorn.py app:app
+
+[Install]
+WantedBy=multi-user.target

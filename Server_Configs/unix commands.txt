@@ -1,0 +1,32 @@
+sudo systemctl daemon-reload
+sudo systemctl enable gunicorn.service
+sudo systemctl start gunicorn.service
+sudo systemctl status gunicorn.service
+sudo systemctl restart gunicorn.service
+sudo systemctl stop gunicorn.service
+sudo systemctl enable nginx
+sudo systemctl start nginx
+sudo systemctl status nginx
+sudo systemctl restart nginx
+sudo systemctl enable caddy
+sudo systemctl start caddy
+sudo systemctl status caddy
+sudo systemctl restart caddy
+pip install -U setuptools pip
+python3 -m venv env
+cd /home/JobDesk_API/
+source env/bin/activate
+pip install --no-cache-dir -r requirements.txt
+
+ssh root@45.76.180.11
+M4d[kBmGR,fDf_qR
+
+
+gunicorn app:app --preload -b 0.0.0.0:8000
+
+nohup uvicorn app:app --reload --host 0.0.0.0 &
+
+sudo kill -9 `sudo lsof -t -i:8000`
+
+python -m spacy download xx_ent_wiki_sm
+
